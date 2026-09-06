@@ -1,0 +1,1 @@
+scp -i .\agneesh_key_pair.pem "C:\Users\10860127\OneDrive - LTM\Desktop\Terraform\main.tf" ubuntu@13.200.237.66:/home/ubuntu/learning-terraform/
