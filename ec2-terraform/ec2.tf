@@ -54,10 +54,14 @@ resource "aws_security_group" "allow_ssh"{
 # EC2 Instance
 
 resource "aws_instance" "ec2_automated_server" {
-    count = var.ec2_instance_count #Meta Argument to create multiple instances
+    for_each = tomap({
+        AWS_EC2_1 = "t2.micro"
+        AWS_EC2_2 = "t3.micro"
+    })
+    #count = var.ec2_instance_count #Meta Argument to create multiple instances
     key_name = aws_key_pair.terraform_key.key_name
     security_groups = [aws_security_group.allow_ssh.name]
-    instance_type = var.ec2_instance_type
+    instance_type = each.value
     ami = var.ec2_ami
     user_data = file("nginx_install.sh")
 
@@ -67,6 +71,6 @@ resource "aws_instance" "ec2_automated_server" {
     }   
 
     tags = {
-        Name = "ec2-automated-server"
+        Name = each.key
     }
 }
