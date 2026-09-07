@@ -54,7 +54,7 @@ resource "aws_security_group" "allow_ssh"{
 # EC2 Instance
 
 resource "aws_instance" "ec2_automated_server" {
-    count = 2 #Meta Argument to create multiple instances
+    count = var.ec2_instance_count #Meta Argument to create multiple instances
     key_name = aws_key_pair.terraform_key.key_name
     security_groups = [aws_security_group.allow_ssh.name]
     instance_type = var.ec2_instance_type
