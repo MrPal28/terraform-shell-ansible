@@ -1,8 +1,4 @@
-#key pair (login to ec2 instance using key pair)
-resource "aws_key_pair" "terraform_key" {
-  key_name   = "terraform-key-ec2"
-  public_key = file("terraform-key-ec2.pub")
-}
+
 # VPC & Security Group
 
 resource "aws_default_vpc" "default"{
@@ -59,7 +55,7 @@ resource "aws_instance" "ec2_automated_server" {
         AWS_EC2_2 = "t3.micro"
     })
     #count = var.ec2_instance_count #Meta Argument to create multiple instances
-    key_name = aws_key_pair.terraform_key.key_name
+    key_name = key_pair.terraform_key.key_name
     security_groups = [aws_security_group.allow_ssh.name]
     instance_type = each.value
     ami = var.ec2_ami
