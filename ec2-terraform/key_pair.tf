@@ -1,3 +1,4 @@
+# File Path: ec2-terraform/key_pair.tf
 #key pair (login to ec2 instance using key pair)
 resource "tls_private_key" "terraform_key"{
     algorithm = "RSA"
