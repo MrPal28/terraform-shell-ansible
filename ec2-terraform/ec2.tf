@@ -54,6 +54,9 @@ resource "aws_instance" "ec2_automated_server" {
         AWS_EC2_1 = "t2.micro"
         AWS_EC2_2 = "t3.micro"
     })
+
+    depends_on = [aws_security_group.allow_ssh, aws_key_pair.terraform_key]
+
     #count = var.ec2_instance_count #Meta Argument to create multiple instances
     key_name = aws_key_pair.terraform_key.key_name
     security_groups = [aws_security_group.allow_ssh.name]
@@ -62,7 +65,7 @@ resource "aws_instance" "ec2_automated_server" {
     user_data = file("nginx_install.sh")
 
     root_block_device{
-        volume_size = var.ec2_storage_size
+        volume_size = environment == "dev" ? var.ec2_default_storage_size : 16
         volume_type = var.ec2_storage_type
     }   
 

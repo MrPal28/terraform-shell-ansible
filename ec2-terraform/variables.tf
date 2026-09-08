@@ -3,7 +3,7 @@ variable "ec2_instance_type" {
   type = string
 }
 
-variable "ec2_storage_size"{
+variable "ec2_default_storage_size"{
   default = 8
   type = number
 }
@@ -21,4 +21,9 @@ variable "ec2_ami"{
 variable "ec2_instance_count"{
   default = 2
   type = number
+}
+
+variable "environment"{
+  default = "prod"
+  type = string
 }
