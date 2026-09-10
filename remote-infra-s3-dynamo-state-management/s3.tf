@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "terraform_state_bucket_ap"{
+resource "aws_s3_bucket" "terraform_state_bucket_ap_28"{
     bucket = "terraform-state-bucket-ap"
 
     tags = {
