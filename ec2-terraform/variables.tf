@@ -19,11 +19,11 @@ variable "ec2_ami"{
 }
 
 variable "ec2_instance_count"{
-  default = 2
+  default = 1
   type = number
 }
 
 variable "environment"{
-  default = "prod"
+  default = "dev"
   type = string
 }
