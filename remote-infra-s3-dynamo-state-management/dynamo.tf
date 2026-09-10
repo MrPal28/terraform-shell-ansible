@@ -1,14 +1,14 @@
-resource "aws_dynamodb_table" "basic-dynamodb-table" {
-  name           = "terraform-dynamodb-state-table"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "LockId"
-  range_key      = "GameTitle"
+resource "aws_dynamodb_table" "terraform_locks" {
+  name         = "terraform-dynamodb-state-table"
+  billing_mode = "PAY_PER_REQUEST"
+
+  hash_key = "LockID"
 
   attribute {
-    name = "UserId"
+    name = "LockID"
     type = "S"
   }
- 
+
   tags = {
     Name        = "terraform-dynamodb-state-table"
     Environment = "Dev"
