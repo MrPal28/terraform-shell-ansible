@@ -20,3 +20,4 @@ crash.*.log
 # OS
 .DS_Store
 Thumbs.db.terraform/
+terraform-module-app/.terraform.lock.hcl
