@@ -1,0 +1,11 @@
+- name: Hello world
+  hosts: servers # group of users
+  become: yes # work as super user
+
+  vars:
+    user_name: User_AP
+
+  tasks:
+  - name: Greet user
+    command: echo "Hello {{user_name}}"
+
