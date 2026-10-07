@@ -1,0 +1,27 @@
+- name: Install Packages
+  hosts: servers
+  become: yes
+
+  vars:
+    packages_to_install:       
+      - tree
+      - zip
+      - unzip
+      - jq
+      - wget
+      - apache2
+
+  tasks:
+    - name: Show package being installed
+      debug:
+        msg: "Installing {{ item }}"
+      loop: "{{ packages_to_install }}"
+      when: ansible_facts["distribution"] == "RedHat"
+
+    - name: Install packages
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop: "{{ packages_to_install }}"
+      when: ansible_facts["distribution"] == "RedHat"

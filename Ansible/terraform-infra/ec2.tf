@@ -42,7 +42,7 @@ resource "aws_instance" "ec2_automated_server" {
   depends_on = [aws_security_group.allow_ssh, aws_key_pair.terraform_key]
 
   count           = 2 #Meta Argument to create multiple instances
-  key_name        = aws_key_pair.terraform_key.key_name
+  key_name        = "agneesh_key_pair"
   security_groups = [aws_security_group.allow_ssh.name]
   instance_type   = "t2.micro"
   ami             = "ami-01a00762f46d584a1"
